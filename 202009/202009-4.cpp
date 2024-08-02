@@ -1,7 +1,7 @@
 /*
  * 	author: 	zhouyuhao
  * 	created: 	2024-08-01 09:54:03
- * 	modified: 	2024-08-01 10:41:02
+ * 	modified: 	2024-08-02 11:37:29
  * 	item: 		Certified Software Professional
  * 	site: 		226, Harbin
  */
@@ -14,7 +14,7 @@ using namespace std;
 
 const int maxn = 110, maxm = 2010;
 
-int p[maxm][maxn];
+double p[maxm][maxn]; // int -> double since Time Limit Exceeded
 
 double pow(double x) { // square
     return x * x;
@@ -22,15 +22,16 @@ double pow(double x) { // square
 
 int main(int argc, char const *argv[]) {
 
-    int n, m, R;
+    int n, m;
+    double R;
     cin >> n >> m >> R;
-    vector<int> O(n);
+    vector<double> O(n);
     for (int i = 0; i < n; i++) {
         cin >> O[i];
     }
     vector<double> d(m), t(m);
     for (int i = 0; i < m; i++) {
-        int s = 0;
+        double s = 0;
         for (int j = 0; j < n; j++) {
             cin >> p[i][j];
             s += pow(p[i][j] - O[j]); // distance to origin
@@ -41,7 +42,7 @@ int main(int argc, char const *argv[]) {
     vector<double> ans(m);
     for (int i = 0; i < m; i++) {
         for (int j = 0; j < i; j++) { // j < i
-            int s = 0;
+            double s = 0;
             for (int k = 0; k < n; k++) {
                 s += pow(p[i][k] - p[j][k]); // distance between two points
             }
